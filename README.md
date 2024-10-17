@@ -31,3 +31,4 @@ Finally, disable root login and password login for the ssh daemon.
 1. Create a new virtual environment for installing python packages (like ansible). This only needs to be done the first time setting up this repository on a computer. `python3 -m venv venv`
 2. Activate virtual environment. `source venv/bin/activate`
 3. Install dependencies. `pip install -r requirements.txt`
+4. Check that you can ping every node. `ansible cluster -m ping -i inventory.yml`
