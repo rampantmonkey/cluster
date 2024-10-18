@@ -1,0 +1,10 @@
+---
+- name: Set up cluster hardware
+  hosts: cluster
+  gather_facts: true
+  become: true
+
+  tasks:
+    - name: Set up storage
+      ansible.builtin.include_tasks:
+        file: tasks/storage.yml

@@ -1,0 +1,4 @@
+- name: Create filesystem on NVMe drive
+  ansible.builtin.script: scripts/create_nvme_fs.sh
+  args:
+    creates: /mnt/bulk
