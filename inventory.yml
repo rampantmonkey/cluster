@@ -4,3 +4,11 @@ cluster:
     vars:
         ansible_user: ansible
         ansible_ssh_private_key_file: ~/.ssh/ansible_ed25519
+head:
+    hosts:
+        node3
+workers:
+    hosts:
+        node1:
+        node2:
+        node4:

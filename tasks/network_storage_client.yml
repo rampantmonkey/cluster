@@ -1,0 +1,7 @@
+- name: Install packages
+  ansible.builtin.apt:
+    name: nfs-common
+- name: Mount sharedfs
+  ansible.builtin.script: scripts/create_shared_mount.sh
+  args:
+    creates: /sharedfs

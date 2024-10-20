@@ -5,6 +5,22 @@
   become: true
 
   tasks:
-    - name: Set up storage
+    - name: Set up local storage
       ansible.builtin.include_tasks:
-        file: tasks/storage.yml
+        file: tasks/local_storage.yml
+
+- name: Set up head node
+  hosts: head
+  become: true
+  tasks:
+    - name: set up network share
+      ansible.builtin.include_tasks:
+        file: tasks/network_storage_server.yml
+
+- name: Set up worker nodes
+  hosts: workers
+  become: true
+  tasks:
+    - name: set up network share
+      ansible.builtin.include_tasks:
+        file: tasks/network_storage_client.yml
