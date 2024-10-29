@@ -1,0 +1,51 @@
+- name: Install Slurm
+  ansible.builtin.apt:
+    name: slurm-wlm
+
+- name: Copy Slurm config
+  ansible.builtin.copy:
+    src: files/slurm.conf
+    dest: /etc/slurm/slurm.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy slurm cgroup config
+  ansible.builtin.copy:
+    src: files/cgroup.conf
+    dest: /etc/slurm/cgroup.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy slurm cgroup allowed devices
+  ansible.builtin.copy:
+    src: files/cgroup_allowed_devices_file.conf
+    dest: /etc/slurm/cgroup_allowed_devices_file.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: expose munge key for clients
+  copy:
+    remote_src: true
+    src: /etc/munge/munge.key
+    dest: /sharedfs/munge.key
+
+- name: Enable munge daemon
+  ansible.builtin.systemd_service:
+    name: munge
+    state: started
+    enabled: true
+
+- name: Enable slurm daemon
+  ansible.builtin.systemd_service:
+    name: slurmd
+    state: started
+    enabled: true
+
+- name: Enable slurm control daemon
+  ansible.builtin.systemd_service:
+    name: slurmctld
+    state: started
+    enabled: true

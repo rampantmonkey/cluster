@@ -16,6 +16,9 @@
     - name: set up network share
       ansible.builtin.include_tasks:
         file: tasks/network_storage_server.yml
+    - name: set up slurm
+      ansible.builtin.include_tasks:
+        file: tasks/slurm_controller.yml
 
 - name: Set up worker nodes
   hosts: workers
@@ -24,3 +27,6 @@
     - name: set up network share
       ansible.builtin.include_tasks:
         file: tasks/network_storage_client.yml
+    - name: set up slurm
+      ansible.builtin.include_tasks:
+        file: tasks/slurm_worker.yml
