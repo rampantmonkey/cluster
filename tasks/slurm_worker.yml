@@ -31,6 +31,8 @@
     remote_src: true
     src: /sharedfs/munge.key
     dest: /etc/munge/munge.key
+    owner: 114
+    mode: 0600
 
 - name: Enable munge daemon
   ansible.builtin.systemd_service:

@@ -32,3 +32,8 @@ Finally, disable root login and password login for the ssh daemon.
 2. Activate virtual environment. `source venv/bin/activate`
 3. Install dependencies. `pip install -r requirements.txt`
 4. Check that you can ping every node. `ansible cluster -m ping -i inventory.yml`
+
+
+## Board Oddities
+
+Packaged as 3 sockets. 1 Socket with 4 high performance cores, 2 sockets with 2 efficiency cores each. This confuses slurm so I opted to just say "there are 8 cpus that are all the same. deal with it." by setting the `config_overrides` flag in the SlurmdParameters config value.
